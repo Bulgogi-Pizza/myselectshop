@@ -2,6 +2,7 @@ package com.sparta.myselectshop.naver.service;
 
 
 import com.sparta.myselectshop.naver.dto.ItemDto;
+import io.github.cdimascio.dotenv.Dotenv;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -21,6 +22,9 @@ import java.util.List;
 public class NaverApiService {
 
   private final RestTemplate restTemplate;
+  private final Dotenv dotenv = Dotenv.load();
+  private final String NAVER_CLIENT_ID = dotenv.get("NAVER_CLIENT_ID");
+  private final String NAVER_CLIENT_SECRET = dotenv.get("NAVER_CLIENT_SECRET");
 
   public NaverApiService(RestTemplateBuilder builder) {
     this.restTemplate = builder.build();
@@ -40,8 +44,8 @@ public class NaverApiService {
 
     RequestEntity<Void> requestEntity = RequestEntity
         .get(uri)
-        .header("X-Naver-Client-Id", "k1T8DVZAQpJ0D3NdXiw4")
-        .header("X-Naver-Client-Secret", "12cVF3eMSH")
+        .header("X-Naver-Client-Id", NAVER_CLIENT_ID)
+        .header("X-Naver-Client-Secret", NAVER_CLIENT_SECRET)
         .build();
 
     ResponseEntity<String> responseEntity = restTemplate.exchange(requestEntity, String.class);

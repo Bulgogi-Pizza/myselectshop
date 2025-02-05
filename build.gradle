@@ -32,6 +32,9 @@ dependencies {
 	// json
 	implementation 'org.json:json:20230227'
 
+	// dotenv-java
+	implementation 'io.github.cdimascio:java-dotenv:+'
+
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'

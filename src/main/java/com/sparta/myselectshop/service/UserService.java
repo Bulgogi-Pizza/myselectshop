@@ -4,6 +4,7 @@ import com.sparta.myselectshop.dto.SignupRequestDto;
 import com.sparta.myselectshop.entity.User;
 import com.sparta.myselectshop.entity.UserRoleEnum;
 import com.sparta.myselectshop.repository.UserRepository;
+import io.github.cdimascio.dotenv.Dotenv;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -16,9 +17,13 @@ public class UserService {
 
   private final UserRepository userRepository;
   private final PasswordEncoder passwordEncoder;
+  private static final Dotenv dotenv = Dotenv.load();
 
-  // ADMIN_TOKEN
-  private final String ADMIN_TOKEN = "AAABnvxRVklrnYxKZ0aHgTBcXukeZygoC";
+  // ADMIN_TOKEN load by dotenv
+  private final String ADMIN_TOKEN = dotenv.get("ADMIN_TOKEN");
+
+  // ADMIN_TOKEN org. code
+  //  private final String ADMIN_TOKEN = ${ADMIN_TOKEN};
 
   public void signup(SignupRequestDto requestDto) {
     String username = requestDto.getUsername();
