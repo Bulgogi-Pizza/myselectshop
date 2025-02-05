@@ -6,6 +6,7 @@ import com.sparta.myselectshop.dto.ProductResponseDto;
 import com.sparta.myselectshop.entity.Product;
 import com.sparta.myselectshop.repository.ProductRepository;
 import jakarta.persistence.EntityExistsException;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,5 +37,11 @@ public class ProductService {
     product.update(requestDto);
 
     return new ProductResponseDto(product);
+  }
+
+  public List<ProductResponseDto> getProducts() {
+    return productRepository.findAll().stream()
+        .map(ProductResponseDto::new)
+        .toList();
   }
 }

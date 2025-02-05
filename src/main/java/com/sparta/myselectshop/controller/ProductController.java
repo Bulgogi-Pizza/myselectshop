@@ -4,6 +4,7 @@ import com.sparta.myselectshop.dto.ProductMypriceRequestDto;
 import com.sparta.myselectshop.dto.ProductRequestDto;
 import com.sparta.myselectshop.dto.ProductResponseDto;
 import com.sparta.myselectshop.service.ProductService;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,6 +29,11 @@ public class ProductController {
   @PutMapping("/products/{id}")
   public ProductResponseDto updateProduct(@RequestBody ProductMypriceRequestDto requestDto, @PathVariable Long id) {
     return productService.updateProduct(requestDto, id);
+  }
+
+  @GetMapping("/products")
+  public List<ProductResponseDto> getProducts() {
+    return productService.getProducts();
   }
 
 }
