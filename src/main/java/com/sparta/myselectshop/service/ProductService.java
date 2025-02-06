@@ -43,12 +43,12 @@ public class ProductService {
 
   @Transactional
   public ProductResponseDto updateProduct(ProductMypriceRequestDto requestDto, Long id) {
+    if (requestDto.getMyprice() < MIN_MY_PRICE) {
+      throw new IllegalArgumentException("유효하지 않은 관심 가격입니다. 최소 " + MIN_MY_PRICE + "원 이상으로 설정해 주세요.");
+    }
+
     Product product = productRepository.findById(id).orElseThrow(
         () -> new EntityExistsException("존재하지 않는 마이 상품입니다."));
-
-    if (requestDto.getMyprice() < MIN_MY_PRICE) {
-      throw new IllegalArgumentException("내 가격 설정은 " + MIN_MY_PRICE + "원 이상이어야 합니다.");
-    }
 
     product.update(requestDto);
 
