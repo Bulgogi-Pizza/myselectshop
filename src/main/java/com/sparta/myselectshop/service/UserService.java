@@ -17,7 +17,7 @@ public class UserService {
 
   private final UserRepository userRepository;
   private final PasswordEncoder passwordEncoder;
-  private static final Dotenv dotenv = Dotenv.load();
+  private final Dotenv dotenv = Dotenv.load();
 
   // ADMIN_TOKEN load by dotenv
   private final String ADMIN_TOKEN = dotenv.get("ADMIN_TOKEN");
