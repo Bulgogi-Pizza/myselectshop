@@ -27,7 +27,7 @@ public class FolderService {
         Folder folder = new Folder(folderName, user);
         folderList.add(folder);
       } else {
-        throw new IllegalArgumentException("이미 존재하는 폴더 이름입니다.");
+        throw new IllegalArgumentException("중복된 폴더명을 제거해주세요! 폴더명 : " + folderName);
       }
     }
 
